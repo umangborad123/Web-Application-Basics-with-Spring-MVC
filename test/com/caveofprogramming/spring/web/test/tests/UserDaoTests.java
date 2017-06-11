@@ -31,6 +31,11 @@ public class UserDaoTests {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	private User user1 = new User("umangborad", "Umang Borad", "letmein", true, "ROLE_ADMIN", "umang@nowhere.com");
+	private User user2 = new User("johnwpurcell", "John Purcell", "letmein", true, "ROLE_USER", "john@nowhere.com");
+	private User user3 = new User("richardhanny", "Richard Hanny", "letmein", true, "ROLE_USER", "richard@nowhere.com");
+	private User user4 = new User("sueblack", "Sue Black", "letmein", false, "user", "sue@nowhere.com");
 
 	@Before
 	public void init() {
@@ -40,11 +45,29 @@ public class UserDaoTests {
 		jdbc.execute("delete from users");
 		//jdbc.execute("delete from authorities");
 	}
-
+	
+	@Test
+	public void testCreateRetrieve() {
+		usersDao.create(user1);
+		
+		List<User> users1 = usersDao.getAllUsers();
+		assertEquals("One user should have been created and retrieve", 1, users1.size());
+		
+		assertEquals("Inserted user should retrieved.", user1, users1.get(0));
+		usersDao.create(user2);
+		usersDao.create(user3);
+		usersDao.create(user4);
+		
+		List<User> users2 = usersDao.getAllUsers();
+		assertEquals("Four users should have been created and retrieve", 4, users2.size());
+	}
+	
+	
+	//TODO - Reimplement this.
 	@Test
 	public void testUsers() {
 		User user = new User("umangborad", "Umang", "letmein", true, "ROLE_USER", "umang@nowhere.com");
-		assertTrue("User creation should return true", usersDao.create(user));
+		usersDao.create(user);
 
 		List<User> users = usersDao.getAllUsers();
 		assertEquals("Number of users should be 1", 1, users.size());

@@ -10,7 +10,7 @@
 				New Account</h2></label>
 
 	</div>
-	<div class="row" style="padding-top:4%">
+	<div class="row" style="padding-top:4%; margin-bottom: 100px;">
 		<sf:form id="details" class="form-horizontal"
 			action="${pageContext.request.contextPath}/createaccount"
 			method="post" commandName="user">
@@ -19,7 +19,7 @@
 				<div class="col-sm-10">
 					<sf:input type="text" class="form-control" name="username"
 						path="username" placeholder="Username" />
-					<sf:errors path="username"></sf:errors>
+					<sf:errors path="username" cssClass="error"></sf:errors>
 				</div>
 			</div>
 
@@ -29,7 +29,7 @@
 				<div class="col-sm-10">
 					<sf:input type="text" class="form-control" name="name" path="name"
 						placeholder="Full Name" />
-					<sf:errors path="name"></sf:errors>
+					<sf:errors path="name" cssClass="error"></sf:errors>
 				</div>
 			</div>
 
@@ -38,7 +38,7 @@
 				<div class="col-sm-10">
 					<sf:input type="text" class="form-control" name="email"
 						path="email" placeholder="Email" />
-					<sf:errors path="email"></sf:errors>
+					<sf:errors path="email" cssClass="error"></sf:errors>
 				</div>
 			</div>
 
@@ -47,7 +47,7 @@
 				<div class="col-sm-10">
 					<sf:input type="password" class="form-control" name="password"
 						path="password" placeholder="Password" />
-					<sf:errors path="password"></sf:errors>
+					<sf:errors path="password" cssClass="error"></sf:errors>
 				</div>
 			</div>
 

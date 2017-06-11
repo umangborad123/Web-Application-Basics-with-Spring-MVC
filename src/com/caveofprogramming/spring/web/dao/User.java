@@ -14,20 +14,20 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name="users")
 public class User {
 
-	@NotBlank
-	@Size(min = 5, max = 15)
-	@Pattern(regexp = "^\\w{5,}$")
+	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Size(min = 5, max = 15, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Pattern(regexp = "^\\w{5,}$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Id
 	@Column(name="username")
 	private String username;
 
-	@NotBlank
-	@Pattern(regexp = "^\\S+$")
-	@Size(min = 5, max = 15)
+	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Pattern(regexp = "^\\S+$", groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Size(min = 5, max = 15, groups={FormValidationGroup.class})
 	private String password;
 
-	@NotBlank
-	@Size(min = 5, max = 60)
+	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
+	@Size(min = 5, max = 60, groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	private String name;
 	private boolean enabled = false;
 	private String authority;

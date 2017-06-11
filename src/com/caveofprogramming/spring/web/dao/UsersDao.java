@@ -12,8 +12,10 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository // To convert hibernate exception to org.springframework exception
 @Transactional
 @Component("usersDao")
 public class UsersDao {
@@ -22,7 +24,7 @@ public class UsersDao {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -30,31 +32,37 @@ public class UsersDao {
 	public void setDataSource(DataSource jdbc) {
 		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
 	}
-	
+
 	public Session session() {
 		return sessionFactory.getCurrentSession();
 	}
 
 	@Transactional
-	public boolean create(User user) {
+	public void create(User user) {
+		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		session().save(user);
+		
 
 		/*
 		 * BeanPropertySqlParameterSource params = new
 		 * BeanPropertySqlParameterSource(user);
 		 */
 
-		MapSqlParameterSource params = new MapSqlParameterSource();
-
-		params.addValue("username", user.getUsername());
-		params.addValue("password", passwordEncoder.encode(user.getPassword()));
-		params.addValue("email", user.getEmail());
-		params.addValue("name", user.getName());
-		params.addValue("enabled", user.isEnabled());
-		params.addValue("authority", user.getAuthority());
-
-		return jdbc.update(
-				"insert into users (username, password, name, email, enabled, authority) values (:username, :password, :name, :email, :enabled, :authority) ",
-				params) == 1;
+		/*
+		 * MapSqlParameterSource params = new MapSqlParameterSource();
+		 * 
+		 * params.addValue("username", user.getUsername());
+		 * params.addValue("password",
+		 * passwordEncoder.encode(user.getPassword())); params.addValue("email",
+		 * user.getEmail()); params.addValue("name", user.getName());
+		 * params.addValue("enabled", user.isEnabled());
+		 * params.addValue("authority", user.getAuthority());
+		 * 
+		 * return jdbc.update(
+		 * "insert into users (username, password, name, email, enabled, authority) values (:username, :password, :name, :email, :enabled, :authority) "
+		 * , params) == 1;
+		 */
 
 	}
 
@@ -68,7 +76,8 @@ public class UsersDao {
 	public List<User> getAllUsers() {
 
 		return session().createQuery("from User").list();
-		 //return jdbc.query("select * from users", BeanPropertyRowMapper.newInstance(User.class));
+		// return jdbc.query("select * from users",
+		// BeanPropertyRowMapper.newInstance(User.class));
 	}
 
 }

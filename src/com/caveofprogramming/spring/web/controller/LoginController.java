@@ -13,9 +13,11 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.caveofprogramming.spring.web.dao.FormValidationGroup;
 import com.caveofprogramming.spring.web.dao.Offer;
 import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.service.OffersService;
@@ -81,7 +83,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/createaccount", method = RequestMethod.POST)
-	public String createAccount(@Valid User user, BindingResult result) {
+	public String createAccount(@Validated(FormValidationGroup.class) User user, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "newaccount";
@@ -94,6 +96,7 @@ public class LoginController {
 
 		user.setAuthority("ROLE_USER");
 		user.setEnabled(true);
+		
 		usersService.create(user);
 
 		return "accountcreated";
