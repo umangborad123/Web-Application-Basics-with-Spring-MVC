@@ -10,15 +10,22 @@
 		document.f.username.focus();
 	});
 </script>
+<div class="container">
+	<div class="container">
+		<div class="row">
+			<h3
+				style="text-align: justify; padding-left: 85px; margin-bottom: 35px;">Login
+				with Username and Password</h3>
+		</div>
+	</div>
 
-<h3>Login with Username and Password</h3>
 
-<c:if test="${param.error != null }">
-	<p class="error">Login failed. Check that username and password are
-		correct.</p>
-</c:if>
+	<c:if test="${param.error != null }">
+		<p class="error">Login failed. Check that username and password
+			are correct.</p>
+	</c:if>
 
-<form name='f' action='${pageContext.request.contextPath}/login'
+	<%-- <form name='f' action='${pageContext.request.contextPath}/login'
 	method='POST'>
 	<table class="formtable">
 		<tr>
@@ -41,7 +48,51 @@
 		<!-- <input name="_csrf" type="hidden"
 				value="0f682301-dbde-43cb-ac16-7ffcc098098b" /> -->
 	</table>
-</form>
-<p>
-	Click <a href="<c:url value="/newaccount"/>">here</a> to register.
-</p>
+</form> --%>
+	<div class="container">
+		<div class="row">
+			<form name = 'f' class="form-horizontal"
+				action='${pageContext.request.contextPath}/login' method='POST'>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label"
+						style="color: grey;">Username</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="username"
+							placeholder="Username">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label"
+						style="color: grey;">Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" name="password"
+							placeholder="Password">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<label style="color: grey;"> <input type="checkbox"
+								name="remember-me"> Remember me
+							</label> <input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-success"
+							style="margin-right: 10px">Sign in</button>
+						<a href="<c:url value="/newaccount"/>"><button
+								class="btn btn-primary">Register</button></a>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+</div>
+
+
+

@@ -7,16 +7,20 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
-	<link href="${pageContext.request.contextPath}/static/css/main.css"
-		rel="stylesheet" type="text/css">
-	
-	
-	<script type="text/javascript"
-		src='<c:url value = "/static/js/jquery-3.2.1.min.js" />'></script>
-	
-	<tiles:insertAttribute name="includes"></tiles:insertAttribute>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
+<link href="${pageContext.request.contextPath}/static/css/main.css"
+	rel="stylesheet" type="text/css"> 
+
+<link
+	href="${pageContext.request.contextPath}/static/css/bootstrap.min.css"
+	rel="stylesheet" type="text/css">
+<script type="text/javascript"
+	src='<c:url value = "/static/js/jquery-3.2.1.min.js" />'></script>
+<script type="text/javascript"
+	src='<c:url value = "/static/js/bootstrap.min.js" />'></script>
+
+<tiles:insertAttribute name="includes"></tiles:insertAttribute>
 
 </head>
 
@@ -27,9 +31,10 @@
 	<div class="content">
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
-	<hr />
-	<div class="footer">
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-	</div>
+	<footer class="footer">
+		<div class="footer">
+			<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+		</div>
+	</footer>
 </body>
 </html>

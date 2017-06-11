@@ -4,50 +4,55 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-
-<table class="offers">
-	<tr>
-		<th align="center">Name</th>
-		<th>Email</th>
-		<th align="center">Offers</th>
-	</tr>
-	<c:forEach var="offer" items="${offers}">
-		<tr>
-			<td width="100px" align="left"><c:out value="${offer.user.name}"></c:out></td>
-			<td width="200px" align="center"><c:out
-					value="${offer.user.email}"></c:out></td>
-			<td width="200px" align="left"><c:out value="${offer.text}"></c:out></td>
-			<%-- <p>
+<div class="container">
+	<div class="row myTable">
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Offers</th>
+			</tr>
+			<c:forEach var="offer" items="${offers}">
+				<tr>
+					<td><c:out value="${offer.user.name}"></c:out></td>
+					<td><c:out value="${offer.user.email}"></c:out></td>
+					<td><c:out value="${offer.text}"></c:out></td>
+					<%-- <p>
 			<c:out value="${offer}"></c:out>
 		</p> --%>
-		</tr>
-	</c:forEach>
-</table>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 
-<%-- <p>
+
+
+	<%-- <p>
 	<a href="${pageContext.request.contextPath}/offers">Show Offers</a></br>
 </p> --%>
 
-<c:choose>
-	<c:when test="${hasOffer}">
-		<p>
-			<a href="${pageContext.request.contextPath}/createoffer">Edit or delete your current offer.</a>
-		</p>
-	</c:when>
-	<c:otherwise>
-		<p>
-			<a href="${pageContext.request.contextPath}/createoffer">Add a
-				new Offer</a>
-		</p>
-	</c:otherwise>
-</c:choose>
+	<c:choose>
+		<c:when test="${hasOffer}">
+			<div class="container">
+				<div class="row" style="margin-left: 3.4%;">
+					<a href="${pageContext.request.contextPath}/createoffer"><button
+							class="btn btn-danger" style="margin-right: 15px">Edit/Delete
+							Offer</button></a>
 
-
-
-<p>
-	<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-		<a href="<c:url value = '/admin' />">Admin</a>
-	</sec:authorize>
-</p>
-
-
+					<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+						<a href="${pageContext.request.contextPath}/admin"><button
+								class="btn btn-info">Admin</button></a>
+					</sec:authorize>
+				</div>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="container">
+				<div class="row">
+					<a href="${pageContext.request.contextPath}/createoffer"><button
+							class="btn btn-info">Add new offer</button></a>
+				</div>
+			</div>
+		</c:otherwise>
+	</c:choose>
+</div>
