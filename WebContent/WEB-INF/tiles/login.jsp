@@ -10,6 +10,7 @@
 		document.f.username.focus();
 	});
 </script>
+
 <div class="container">
 	<div class="container">
 		<div class="row">
@@ -25,33 +26,6 @@
 		</div>
 	</div>
 
-
-
-
-	<%-- <form name='f' action='${pageContext.request.contextPath}/login'
-	method='POST'>
-	<table class="formtable">
-		<tr>
-			<td>Username:</td>
-			<td><input type='text' name='username' /></td>
-		</tr>
-		<tr>
-			<td>Password:</td>
-			<td><input type='password' name='password' /></td>
-		</tr>
-		<tr>
-			<td>Remember me:</td>
-			<td><input type="checkbox" name='remember-me' checked="checked" /></td>
-		</tr>
-		<tr>
-			<td colspan='2'><input name="submit" type="submit" value="Login" /></td>
-		</tr>
-		<input type="hidden" name="${_csrf.parameterName}"
-			value="${_csrf.token}" />
-		<!-- <input name="_csrf" type="hidden"
-				value="0f682301-dbde-43cb-ac16-7ffcc098098b" /> -->
-	</table>
-</form> --%>
 	<div class="container">
 		<div class="row">
 			<form name='f' class="form-horizontal"
@@ -86,10 +60,16 @@
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-success"
 							style="margin-right: 10px">Sign in</button>
-						<a href="<c:url value="/newaccount"/>">Register</a>
 					</div>
 				</div>
-
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+					<label class="control-label"
+						style="color: grey;">Click <a href="<c:url value="/newaccount"/>">here</a> to register.</label>
+						
+					</div>
+				</div>
+				
 			</form>
 		</div>
 	</div>

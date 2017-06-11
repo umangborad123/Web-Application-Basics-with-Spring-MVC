@@ -5,9 +5,12 @@
 
 <div class="container">
 	<div class="row">
-		<h2>Create New Account</h2>
+
+		<label class="control-label" style="color: grey;"><h2>Create
+				New Account</h2></label>
+
 	</div>
-	<div class="row">
+	<div class="row" style="padding-top:4%">
 		<sf:form id="details" class="form-horizontal"
 			action="${pageContext.request.contextPath}/createaccount"
 			method="post" commandName="user">
@@ -64,23 +67,6 @@
 						style="margin-right: 10px">Create</button>
 				</div>
 			</div>
-
-<!-- 			<table class="formtable">
-
-
-
-				<tr>
-					<td class="label">Confirm Password:</td>
-					<td><input type="password" id="confirmpass" name="confirmpass"
-						class="control" />
-						<div id="matchpass"></div>
-				</tr>
-				<tr>
-					<td class="label"></td>
-					<td><input type="submit" value="Create account"
-						class="control" /></td>
-				</tr>
-			</table> -->
 		</sf:form>
 	</div>
 </div>

@@ -22,15 +22,15 @@ import com.caveofprogramming.spring.web.dao.User;
 import com.caveofprogramming.spring.web.dao.UsersDao;
 
 @ActiveProfiles("dev")
-@ContextConfiguration(locations = { "classpath:com/caveofprogramming/spring/web/config/dao-context.xml",
-		"classpath:com/caveofprogramming/spring/web/config/security-context.xml",
-		"classpath:com/caveofprogramming/spring/web/test/config/datasource.xml" })
+@ContextConfiguration(locations = { "classpath:com/caveofprogramming/spring/web/test/config/datasource.xml",
+		"classpath:com/caveofprogramming/spring/web/config/dao-context.xml",
+		"classpath:com/caveofprogramming/spring/web/config/security-context.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
 public class OfferDaoTests {
 
 	@Autowired
 	private OffersDao offersDao;
-	
+
 	@Autowired
 	private UsersDao usersDao;
 
@@ -43,7 +43,7 @@ public class OfferDaoTests {
 
 		jdbc.execute("delete from offers");
 		jdbc.execute("delete from users");
-		
+
 		// jdbc.execute("delete from authorities");
 	}
 
@@ -51,15 +51,14 @@ public class OfferDaoTests {
 	public void testOffers() {
 		User user = new User("umangborad", "Umang", "letmein", true, "ROLE_USER", "umang@nowhere.com");
 		assertTrue("User creation should return true", usersDao.create(user));
-		
+
 		Offer offer = new Offer(user, "This is a test offer.");
-		
+
 		assertTrue("Offer creation should return true", offersDao.create(offer));
 
 		List<Offer> offers = offersDao.getOffers();
 
 		assertEquals("Should be one offer", 1, offers.size());
-		
 
 		assertEquals("Retrieved offer should match created offer", offer, offers.get(0));
 
@@ -74,15 +73,14 @@ public class OfferDaoTests {
 		assertEquals("Updated offer should match retrieved offer", offer, updated);
 
 		// Test by ID
-		
+
 		Offer offer2 = new Offer(user, "This is a test offer.");
-		
+
 		assertTrue("Offer creation should return true.", offersDao.create(offer2));
-		
+
 		List<Offer> userOffers = offersDao.getOffers(user.getUsername());
 		assertEquals("Should have two offers", 2, userOffers.size());
-		
-		
+
 		// Test deletion
 		offersDao.delete(offer.getId());
 		List<Offer> empty = offersDao.getOffers();

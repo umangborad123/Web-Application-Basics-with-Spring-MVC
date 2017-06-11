@@ -19,7 +19,7 @@
 	</div>
 	<div class="row">
 		<div class="col-sm-12" style="padding-top: 4%">
-			Click <a href="${pageContext.request.contextPath}/offers">here</a> to
+			Click <a href="${pageContext.request.contextPath}/">here</a> to
 			view current offers.
 		</div>
 	</div>

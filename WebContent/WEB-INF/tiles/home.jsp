@@ -28,7 +28,7 @@
 			<c:choose>
 				<c:when test="${hasOffer}">
 					<div class="container">
-						<div class="row" style="margin-left: 3.4%;">
+						<div class="row">
 							<a href="${pageContext.request.contextPath}/createoffer"><button
 									class="btn btn-danger" style="margin-right: 15px">Edit/Delete
 									Offer</button></a>
