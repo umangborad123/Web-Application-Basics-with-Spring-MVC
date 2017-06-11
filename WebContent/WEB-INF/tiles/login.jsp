@@ -17,13 +17,16 @@
 				style="text-align: justify; padding-left: 85px; margin-bottom: 35px;">Login
 				with Username and Password</h3>
 		</div>
+		<div class="row">
+			<c:if test="${param.error != null }">
+				<p class="error" style="text-align: justify; padding-left: 85px; margin-bottom: 35px;">Login failed. Check that username and password
+					are correct.</p>
+			</c:if>
+		</div>
 	</div>
 
 
-	<c:if test="${param.error != null }">
-		<p class="error">Login failed. Check that username and password
-			are correct.</p>
-	</c:if>
+
 
 	<%-- <form name='f' action='${pageContext.request.contextPath}/login'
 	method='POST'>
@@ -51,7 +54,7 @@
 </form> --%>
 	<div class="container">
 		<div class="row">
-			<form name = 'f' class="form-horizontal"
+			<form name='f' class="form-horizontal"
 				action='${pageContext.request.contextPath}/login' method='POST'>
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-2 control-label"
@@ -83,8 +86,7 @@
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-success"
 							style="margin-right: 10px">Sign in</button>
-						<a href="<c:url value="/newaccount"/>"><button
-								class="btn btn-primary">Register</button></a>
+						<a href="<c:url value="/newaccount"/>">Register</a>
 					</div>
 				</div>
 
