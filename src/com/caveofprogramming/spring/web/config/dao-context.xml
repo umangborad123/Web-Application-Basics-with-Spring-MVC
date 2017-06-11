@@ -17,6 +17,7 @@
 		<jee:jndi-lookup jndi-name="jdbc/spring" id="dataSource"
 			expected-type="javax.sql.DataSource">
 		</jee:jndi-lookup>
+		
 		<bean id="transactionManager"
 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 			<property name="dataSource" ref="dataSource"></property>
