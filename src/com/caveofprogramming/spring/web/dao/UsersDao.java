@@ -4,11 +4,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -20,18 +20,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Component("usersDao")
 public class UsersDao {
 
-	private NamedParameterJdbcTemplate jdbc;
+	//private NamedParameterJdbcTemplate jdbc; // Your service no longer needed :(
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	/*
+	 * @Autowired // Now, there is no need of setting dataSource because of
+	 * Hibernate. 
+	 * public void setDataSource(DataSource jdbc) { 
+	 * 		this.jdbc = new NamedParameterJdbcTemplate(jdbc); }
+	 */
+	
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	@Autowired
-	public void setDataSource(DataSource jdbc) {
-		this.jdbc = new NamedParameterJdbcTemplate(jdbc);
-	}
 
 	public Session session() {
 		return sessionFactory.getCurrentSession();
@@ -39,10 +41,9 @@ public class UsersDao {
 
 	@Transactional
 	public void create(User user) {
-		
+
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		session().save(user);
-		
 
 		/*
 		 * BeanPropertySqlParameterSource params = new
@@ -67,9 +68,21 @@ public class UsersDao {
 	}
 
 	public boolean exists(String username) {
-		// TODO Auto-generated method stub
-		return jdbc.queryForObject("select count(*) from users where username=:username",
-				new MapSqlParameterSource("username", username), Integer.class) == 1;
+
+		Criteria crit = session().createCriteria(User.class);
+
+		crit.add(Restrictions.idEq(username)); // For primary key comparison.
+		// crit.add(Restrictions.eq("username", username));
+
+		User user = (User) crit.uniqueResult();
+
+		return user != null;
+
+		/*
+		 * return jdbc.
+		 * queryForObject("select count(*) from users where username=:username",
+		 * new MapSqlParameterSource("username", username), Integer.class) == 1;
+		 */
 	}
 
 	@SuppressWarnings("unchecked")

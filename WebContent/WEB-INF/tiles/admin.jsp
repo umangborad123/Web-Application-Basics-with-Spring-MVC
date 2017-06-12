@@ -6,7 +6,7 @@
 	<div class="row">
 		<h3 align="justify" >Authorized Users Only!</h3>
 	</div>
-	<div class="row" style="padding-top: 4%">
+	<div class="row" style="padding-top: 4%; margin-bottom: 100px;">
 		<table class="table table-striped">
 			<tr>
 				<th>Name</th>

@@ -1,12 +1,21 @@
 package com.caveofprogramming.spring.web.dao;
 
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import com.caveofprogramming.spring.web.validation.ValidEmail;
-
+@Entity
+@Table(name = "offers")
 public class Offer {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	/*
@@ -20,9 +29,12 @@ public class Offer {
 	 * @ValidEmail(min=6) private String email;
 	 */
 
-	@Size(min = 5, max = 100, message = "Text must be between 5 and 100 characters.")
+	@Size(min = 5, max = 100, groups = { PersistenceValidationGroup.class, FormValidationGroup.class })
+	@Column(name = "text", nullable=true)
 	private String text;
 
+	@ManyToOne
+	@JoinColumn(name = "username")
 	private User user;
 
 	public Offer() {
@@ -73,7 +85,7 @@ public class Offer {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 	public String getUsername() {
 		return user.getUsername();
 	}

@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.caveofprogramming.spring.web.dao.FormValidationGroup;
 import com.caveofprogramming.spring.web.dao.Offer;
 import com.caveofprogramming.spring.web.service.OffersService;
 
@@ -65,7 +67,7 @@ public class OffersController {
 	}
 
 	@RequestMapping(value = "/docreate", method = RequestMethod.POST)
-	public String doCreate(Model model, @Valid Offer offer, BindingResult result, Principal principal,
+	public String doCreate(Model model, @Validated(FormValidationGroup.class) Offer offer, BindingResult result, Principal principal,
 			@RequestParam(value = "delete", required = false) String delete) {
 
 		if (result.hasErrors()) {
