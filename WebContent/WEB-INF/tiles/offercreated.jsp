@@ -7,13 +7,11 @@
 	<div class="row" style="padding-top: 4%">
 		<c:choose>
 			<c:when test="${update}">
-				<label class="col-sm-12 control-label" style="color: grey;">Your
-					Successfully updated! </label>
+				<label class="col-sm-12 control-label" style="color: grey;">Your offer is successfully updated! </label>
 
 			</c:when>
 			<c:otherwise>
-				<label class="col-sm-12 control-label" style="color: grey;">Your
-					Successfully created! </label>
+				<label class="col-sm-12 control-label" style="color: grey;">Your offer is successfully created! </label>
 			</c:otherwise>
 		</c:choose>
 	</div>

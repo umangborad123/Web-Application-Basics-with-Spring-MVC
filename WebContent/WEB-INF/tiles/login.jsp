@@ -34,8 +34,8 @@
 					<label for="inputEmail3" class="col-sm-2 control-label"
 						style="color: grey;">Username</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" name="username"
-							placeholder="Username">
+						<input type="text" Class="form-control" name="username"
+							placeholder="Username" />
 					</div>
 				</div>
 				<div class="form-group">
@@ -50,7 +50,7 @@
 					<div class="col-sm-offset-2 col-sm-10">
 						<div class="checkbox">
 							<label style="color: grey;"> <input type="checkbox"
-								name="remember-me"> Remember me
+								name="remember-me"> <b>Remember me</b>
 							</label> <input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</div>

@@ -34,7 +34,6 @@ public class LoginController {
 
 	@RequestMapping("/login")
 	public String showLogin(Model model) {
-
 		return "login";
 	}
 

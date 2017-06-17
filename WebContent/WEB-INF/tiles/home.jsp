@@ -10,13 +10,13 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Name</th>
-				<th>Email</th>
+				<th>Send message</th>
 				<th>Offers</th>
 			</tr>
 			<c:forEach var="offer" items="${offers}">
 				<tr>
 					<td><c:out value="${offer.user.name}"></c:out></td>
-					<td><c:out value="${offer.user.email}"></c:out></td>
+					<td><a href="<c:url value='/message?uid=${offer.username}' />"><c:out value="Contact"/></a></td>
 					<td><c:out value="${offer.text}"></c:out></td>
 				</tr>
 			</c:forEach>
