@@ -26,16 +26,9 @@
 		alert("Error!");
 	}
 
-	function sendMessage(i, name, email) {
+	function sendMessage(i, name, email, subject) {
 
 		var text = $("#textbox" + i).val();
-		$(function() {
-			var token = $("input[name='_csrf']").val();
-			var header = "X-CSRF-TOKEN";
-			$(document).ajaxSend(function(e, xhr, options) {
-				xhr.setRequestHeader(header, token);
-			});
-		});
 
 		$.ajax({
 			"type" : "POST",
@@ -44,7 +37,8 @@
 				"target" : i,
 				"text" : text,
 				"name" : name,
-				"email" : email
+				"email" : email,
+				"subject": subject
 			}),
 			"async": false,
 			"success" : success,
@@ -103,11 +97,11 @@
 			replyButton.setAttribute("type", "button");
 			replyButton.setAttribute("value", "Reply");
 			replyButton.setAttribute("class", "btn btn-success replyButton");
-			replyButton.onclick = function(j, name, email) {
+			replyButton.onclick = function(j, name, email, subject) {
 				return function() {
-					sendMessage(j, name, email);
+					sendMessage(j, name, email, subject);
 				}
-			}(i, message.name, message.email);
+			}(i, message.name, message.email, message.subject);
 
 			replyForm.appendChild(textarea);
 			replyForm.appendChild(replyButton);

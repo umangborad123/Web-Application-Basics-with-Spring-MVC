@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-/*import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;*/
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -40,8 +40,8 @@ public class LoginController {
 	@Autowired
 	private OffersService offersService;
 	
-	/*@Autowired
-	private MailSender mailSender;*/
+	@Autowired
+	private MailSender mailSender;
 
 	@RequestMapping("/login")
 	public String showLogin(Model model) {
@@ -145,12 +145,13 @@ public class LoginController {
 		String text = (String) data.get("text");
 		String name = (String) data.get("name");
 		String email = (String) data.get("email");
+		String subject = (String) data.get("subject");
 		Integer target = (Integer) data.get("target");
 		
-		/*SimpleMailMessage mail = new SimpleMailMessage();
+		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setFrom("umangborad123@gmail.com");
 		mail.setTo(email);
-		mail.setSubject("Re: " + name + ", your message");
+		mail.setSubject("Re: " + name + ", " + subject );
 		mail.setText(text);
 		
 		try {
@@ -158,7 +159,7 @@ public class LoginController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Can't send message!");
-		}*/
+		}
 		
 		Map<String, Object> rval = new HashMap<>();
 		rval.put("success", true);
