@@ -56,19 +56,24 @@
 		class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
 		<property name="flowExecutor" ref="flowExecutor"></property>
 	</bean>
-	
+
 	<bean id="flowHandlerMapping"
 		class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
 		<property name="flowRegistry" ref="flowRegistry"></property>
 		<property name="order" value="0"></property>
 	</bean>
-	
+
 	<webflow-config:flow-builder-services
-		id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator" />
-		
+		id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator"
+		validator="validator" />
+
 	<bean id="mvcViewFactoryCreator"
 		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
 		<property name="viewResolvers" ref="tilesViewResolver"></property>
 	</bean>
-	
+
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	</bean>
+
 </beans>

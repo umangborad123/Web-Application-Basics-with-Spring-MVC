@@ -1,5 +1,7 @@
 package com.caveofprogramming.spring.web.dao;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +14,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable {
 
 	@NotBlank(groups={PersistenceValidationGroup.class, FormValidationGroup.class})
 	@Size(min = 5, max = 15, groups={PersistenceValidationGroup.class, FormValidationGroup.class})

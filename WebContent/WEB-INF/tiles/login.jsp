@@ -13,15 +13,16 @@
 
 <div class="container">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="margin-top:4%;">
 			<h3
 				style="text-align: justify; padding-left: 85px; margin-bottom: 35px;">Login
 				with Username and Password</h3>
 		</div>
 		<div class="row">
 			<c:if test="${param.error != null }">
-				<p class="error" style="text-align: justify; padding-left: 85px; margin-bottom: 35px;">Login failed. Check that username and password
-					are correct.</p>
+				<p class="error"
+					style="text-align: justify; padding-left: 85px; margin-bottom: 35px;">Login
+					failed. Check that username and password are correct.</p>
 			</c:if>
 		</div>
 	</div>
@@ -29,7 +30,7 @@
 	<div class="container">
 		<div class="row">
 			<form name='f' class="form-horizontal"
-				action='${pageContext.request.contextPath}/login' method='POST'>
+				action="<c:url value='/login' />" method='POST'>
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-2 control-label"
 						style="color: grey;">Username</label>
@@ -64,12 +65,13 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-					<label class="control-label"
-						style="color: grey;">Click <a href="<c:url value="/newaccount"/>">here</a> to register.</label>
-						
+						<label class="control-label" style="color: grey;">Click <a
+							href="<c:url value="/newaccount"/>">here</a> to register.
+						</label>
+
 					</div>
 				</div>
-				
+
 			</form>
 		</div>
 	</div>

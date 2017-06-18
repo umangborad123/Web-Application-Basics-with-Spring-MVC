@@ -23,17 +23,19 @@
 		<security:intercept-url pattern="/createoffer" access="isAuthenticated()" />
 		<security:intercept-url pattern="/docreate" access="isAuthenticated()" />
 		<security:intercept-url pattern="/offerdeleted" access="isAuthenticated()" />
-
+		<security:intercept-url pattern="/getmessages" access="isAuthenticated()" />
+		<security:intercept-url pattern="/sendmessage" access="isAuthenticated()" />
+		<security:intercept-url pattern="/messages" access="isAuthenticated()" />
 		<security:intercept-url pattern="/admin" access="hasAuthority('ROLE_ADMIN')" />
 
 		<security:intercept-url pattern="/" access="permitAll" />
+		
 		<security:intercept-url pattern="/message" access="permitAll" />
 		<security:intercept-url pattern="/denied" access="permitAll" />
 		<security:intercept-url pattern="/logout" access="permitAll" />
 		<security:intercept-url pattern="/loggedout" access="permitAll" />
 		<security:intercept-url pattern="/static/**" access="permitAll" />
 		<security:intercept-url pattern="/login" access="permitAll" />
-		<security:intercept-url pattern="/offers" access="permitAll" />
 		<security:intercept-url pattern="/newaccount" access="permitAll" />
 		<security:intercept-url pattern="/createaccount" access="permitAll" />
 
@@ -51,6 +53,7 @@
 		<security:remember-me user-service-ref="jdbcUserService"
 			key="offersAppKey" token-validity-seconds="1209600" />
 
+		<security:csrf disabled="true" />
 		
 	</security:http>
 

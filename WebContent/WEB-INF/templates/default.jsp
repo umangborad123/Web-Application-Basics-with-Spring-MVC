@@ -28,9 +28,15 @@
 	<div class="header">
 		<tiles:insertAttribute name="header"></tiles:insertAttribute>
 	</div>
-	<div class="content">
+
+	<div class="container">
+		<tiles:insertAttribute name="toolbar"></tiles:insertAttribute>
 		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
+
+	<!-- <div class="content">
+		
+	</div> -->
 	<div class="footer">
 		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 	</div>

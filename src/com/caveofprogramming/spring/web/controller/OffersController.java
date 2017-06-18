@@ -37,18 +37,6 @@ public class OffersController {
 		return "home";
 	}
 
-	@RequestMapping("/offers")
-	public String showOffers(Model model) {
-
-		// offersService.throwTestException();
-
-		List<Offer> offers = offersService.getCurrent();
-
-		model.addAttribute("offers", offers);
-
-		return "offers";
-	}
-
 	@RequestMapping("/createoffer")
 	public String createOffer(Model model, Principal principal) {
 

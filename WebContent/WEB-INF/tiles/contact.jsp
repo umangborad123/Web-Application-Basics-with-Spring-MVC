@@ -3,6 +3,28 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
+
+
+<!-- <script type="text/javascript">
+	function onLoad() {
+		var formName = $("#nameText").val();
+		var formEmail = $("#emailText").val();
+		
+		if (formName != "" && formEmail != "") {
+			$("#nameText").prop("disabled", true);
+			$("#emailText").prop("disabled", true);
+		} else {
+			$("#nameText").prop("disabled", false);
+			$("#emailText").prop("disabled", false);
+		}
+
+	}
+
+	$(document).ready(onLoad);
+</script> -->
+
+
 <div class="container">
 	<div class="row">
 
@@ -24,7 +46,8 @@
 				<label class="col-sm-2 control-label" style="color: grey;">Your
 					name:</label>
 				<div class="col-sm-10">
-					<sf:input type="text" class="form-control" path="name" />
+					<sf:input type="text" id="nameText" class="form-control"
+						path="name" value="${fromName}" />
 					<sf:errors path="name" cssClass="error"></sf:errors>
 				</div>
 			</div>
@@ -33,7 +56,8 @@
 				<label class="col-sm-2 control-label" style="color: grey;">Your
 					email:</label>
 				<div class="col-sm-10">
-					<sf:input type="text" class="form-control" path="email" />
+					<sf:input type="text" id="emailText" class="form-control"
+						path="email" value="${fromEmail}" />
 					<sf:errors path="email" cssClass="error"></sf:errors>
 				</div>
 			</div>

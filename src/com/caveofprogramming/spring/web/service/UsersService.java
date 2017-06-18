@@ -45,4 +45,13 @@ public class UsersService {
 		messagesDao.saveOrUpdate(message);
 	}
 	
+	public User getUser(String username) {
+		return usersDao.getUser(username);
+	}
+
+	public List<Message> getMessages(String username) {
+
+		return messagesDao.getMessages(username);
+	}
+	
 }
